@@ -39,7 +39,10 @@ db.authenticate(DB_USER, DB_PASS)
 # Route for handling the login page logic
 @app.route("/post", methods=['POST'])
 def post():
-	print("yooooo")
+	new_post = {
+		"gender": request.args.get('gender')
+	}
+	result = db.patients.insert_one(new_post)
 	return jsonify('samarth')
 
 @app.route('/login', methods=['GET', 'POST'])
