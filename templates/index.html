@@ -6,22 +6,24 @@
 			<thead>
 				<tr>
 					<th></th>
+					<th></th>
 					<th>First</th>
 					<th>Last</th>
+					<th>Gender</th>
 					<th>Provider</th>
 					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for p in patients*3 %}
+				{% for p in patients %}
 				<tr onclick="window.location.href = 'patient/{{ p._id }}';">
 					<td></td>
+					<td class="left-align"><img class="circle" src="{{ p.propic }}" style="max-width: 40px; margin-top: 0;"></td>
 					<td>{{ p.firstname }}</td>
 					<td>{{ p.lastname }}</td>
+					<td>{{ p.gender }}</td>
 					<td>{{ p.provider }}</td>
-					<td>
-						<span class="new badge">4</span>
-					</td>
+					<td><span class="new badge">4</span></td>
 				</tr>
 				{% endfor %}
 			</tbody>

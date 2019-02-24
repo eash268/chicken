@@ -52,7 +52,7 @@ def post():
 	response = request.args.get('last clicked button name')
 
 	cursor = db.patients.find(query)
-	if len(cursor) == 0:
+	if cursor.count() == 0:
 		print("new user!")
 		new_post = {
 			"firstname": request.args.get('first name'),
@@ -68,7 +68,7 @@ def post():
 		    }
 		}
 		result = db.patients.insert_one(new_post)
-	elif len(cursor) == 1:
+	elif cursor.count() == 1:
 		print("existing user!")
 		user = cursor[0]
 		if user["scores"]["depression"][question_id]:
