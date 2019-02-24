@@ -1,44 +1,71 @@
-{% extends "base.html" %}
+<!doctype html>
+<html lang="en">
 
-{% block main %}
-	<div class="row" id="login_row">
-		<div id="login_box" class="card col l4 m4 s12 push-l4 push-m4 center z-depth-3">
+<head>
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
 
-			<img class="center-align" src="assets/img/logo_long.png">
+        <!-- Title and Favicon -->
+        <title>  </title>
+        <link rel="shortcut icon" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-icon">
 
-			<form action="" method="post">
-				<div class="input-field autocomplete col s10 push-s1">
-					<input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
-				</div>
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}" />
 
-				<div class="input-field autocomplete col s10 push-s1">
-					<input type="password" placeholder="Password" name="password" value="{{request.form.password }}">
-
-					{% if error %}
-						<p class="red-text left-align"><i>{{error}}</i></p>
-					{% endif %}
-				</div>
-				<div class="input-field col s10 push-s1">
-					<br>
-					<button class="btn blue white-text right" type="submit" id="submit-button" value="Login">Login</button>
-				</div>
-			</form>
-
-		</div>
-	</div>
-{% endblock %}
-
-
-<form action="" method="post">
-	<input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
-	<input type="password" placeholder="Password" name="password" value="{{request.form.password }}">
-</form>
-{% if error %}
-<p class="login_error"><strong>Error:</strong> {{ error }}
-{% endif %}
+        <!-- Fonts and Icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,500" type="text/css" />
+    	<style type="text/css">
+    		header, main, footer, nav {
+				padding-left: 0px !important;
+			}
+    	</style>
+</head>
 
 
 
-{% block scripts %}
-	{{ super() }}
-{% endblock %}
+<body>
+    <main>
+        <div class="row">
+            <div class="col s12">
+                <div id="content" class="content">
+                    <div class="row" id="login_row">
+                        <div id="login_box" class="card col l4 m4 s12 push-l4 push-m4 center z-depth-3">
+
+                            <img class="center-align" src="{{url_for('static',filename='img/chicken.png')}}" style="width: 75px;">
+
+                            <form action="" method="post">
+                                <div class="input-field autocomplete col s10 push-s1">
+                                    <input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+                                </div>
+
+                                <div class="input-field autocomplete col s10 push-s1">
+                                    <input type="password" placeholder="Password" name="password" value="{{request.form.password }}">
+
+                                    {% if error %}
+                                        <p class="red-text left-align"><i>{{error}}</i></p>
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s10 push-s1">
+                                    <br>
+                                    <button class="btn blue white-text right" type="submit" id="submit-button" value="Login">Login</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+        <!-- JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+</body>
+
+</html>
