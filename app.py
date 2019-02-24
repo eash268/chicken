@@ -39,7 +39,12 @@ db.authenticate(DB_USER, DB_PASS)
 # Route for handling the login page logic
 @app.route("/post", methods=['GET'])
 def post():
-	print(request.args)
+
+	try:
+		print(request.args)
+		logger = db.requests.insert_one(request.args)
+	except:
+		pass
 
 	query = {
 		"firstname": request.args.get('first name'),
@@ -63,8 +68,8 @@ def post():
 		    "scores": {
 		        "depression": {},
 		        "anxiety": {},
-		        "well-being": [],
-		        "PTSD": []
+		        "well-being": {},
+		        "PTSD": {}
 		    }
 		}
 		result = db.patients.insert_one(new_post)
