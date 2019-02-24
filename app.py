@@ -42,7 +42,7 @@ def post():
 
 	try:
 		print(request.args)
-		logger = db.requests.insert_one(request.args)
+		logger = db.requests.insert_one(str(request.args.to_dict(flat=False)))
 	except:
 		pass
 
@@ -75,12 +75,8 @@ def post():
 		result = db.patients.insert_one(new_post)
 	elif cursor.count() == 1:
 		print("existing user!")
-		user = cursor[0]
-		if user["scores"]["depression"][question_id]:
-			user["scores"]["depression"][question_id].append(1)
-		else:
-			user["scores"]["depression"][question_id] = [1]
-		result = db.patients.update(query, user)
+		#user = cursor[0]
+		#result = db.patients.update(query, user)
 	return ""
 
 @app.route('/login', methods=['GET', 'POST'])

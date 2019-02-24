@@ -6,7 +6,7 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th></th>
+					<th class=" hide-on-small-only"></th>
 					<th>First</th>
 					<th>Last</th>
 					<th>Gender</th>
@@ -18,7 +18,7 @@
 				{% for p in patients %}
 				<tr onclick="window.location.href = 'patient/{{ p._id }}';">
 					<td></td>
-					<td class="left-align"><img class="circle" src="{{ p.propic }}" style="max-width: 40px; margin-top: 0;"></td>
+					<td class="left-align hide-on-small-only"><img class="circle" src="{{ p.propic }}" style="max-width: 40px; margin-top: 0;"></td>
 					<td>{{ p.firstname }}</td>
 					<td>{{ p.lastname }}</td>
 					<td>{{ p.gender }}</td>
