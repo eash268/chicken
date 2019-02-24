@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    {% block head %}
+        <!-- Meta Tags -->
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+
+        <!-- Title and Favicon -->
+        <title>  </title>
+        <link rel="shortcut icon" href="{{url_for('static',filename='favicon.ico')}}" type="image/x-icon">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}" />
+
+        <!-- Fonts and Icons -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,500" type="text/css" />
+    {% endblock %}
+</head>
+
+
+
+<body>
+    <nav>
+        <div class="nav-wrapper white">
+            <a href="#" data-target="slide-out" class="sidenav-trigger blue-text"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo grey-text text-darken-2">All Clients</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="collapsible.html" class="black-text"><i class="left material-icons grey-text">person_pin</i>Admin, Users<i class="right material-icons">arrow_drop_down</i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav sidenav-fixed blue lighten-1">
+
+        <li>
+            <div class="user-view">
+
+                <div class="background">
+                    <img src="https://i.pinimg.com/originals/2e/95/c9/2e95c9692f656d6cacedf65268dc2be2.png">
+                </div>
+
+                <a href="/" style="visibility: hidden;"><img class="circle" src="https://i.pinimg.com/originals/2e/95/c9/2e95c9692f656d6cacedf65268dc2be2.png"></a>
+                <a href="/" style="visibility: hidden;"><span class="white-text main_logo">Chicken</span></a>
+                <a href="#email" style="visibility: hidden;"><span class="white-text email">Check In From Anywhere 😊</span></a>
+
+            </div>
+        </li>
+
+        <li><a href="/"><i class="material-icons">dashboard</i>Dashboard</a></li>
+        <li><a href="#!"><i class="material-icons">person_add</i>New Patient</a></li>
+        <li><a href="#!"><i class="material-icons">lightbulb_outline</i>Analytics</a></li>
+        <li><a href="#!"><i class="material-icons">info_outline</i>About Us</a></li>
+
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Misc.</a></li>
+        <li><a href="#!"><i class="material-icons">settings</i>Settings</a></li>
+        <li><a href="#!"><i class="material-icons">account_circle</i>Account</a></li>
+    </ul>
+
+    <main>
+        <div class="row">
+            <div class="col s12">
+                <div id="content" class="content">{% block main %} {% endblock %}</div>
+            </div>
+        </div>
+    </main>
+
+    {% block scripts %}
+        <!-- JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.sidenav').sidenav();
+            });
+        </script>
+    {% endblock %}
+</body>
+
+</html>

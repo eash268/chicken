@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block main %}
+	<div class="card col l10 m10 s12 push-l1 push-m1 center z-depth-2" id="patient_table">
+		<table class="highlight">
+			<thead>
+				<tr>
+					<th></th>
+					<th>First</th>
+					<th>Last</th>
+					<th>Provider</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for p in patients*3 %}
+				<tr onclick="window.location.href = 'patient/{{ p._id }}';">
+					<td></td>
+					<td>{{ p.firstname }}</td>
+					<td>{{ p.lastname }}</td>
+					<td>{{ p.provider }}</td>
+					<td>
+						<span class="new badge">4</span>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	{{ super() }}
+{% endblock %}

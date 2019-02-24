@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block main %}
+	<div class="row" id="login_row">
+		<div id="login_box" class="card col l4 m4 s12 push-l4 push-m4 center z-depth-3">
+
+			<img class="center-align" src="assets/img/logo_long.png">
+
+			<form action="" method="post">
+				<div class="input-field autocomplete col s10 push-s1">
+					<input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+				</div>
+
+				<div class="input-field autocomplete col s10 push-s1">
+					<input type="password" placeholder="Password" name="password" value="{{request.form.password }}">
+
+					{% if error %}
+						<p class="red-text left-align"><i>{{error}}</i></p>
+					{% endif %}
+				</div>
+				<div class="input-field col s10 push-s1">
+					<br>
+					<button class="btn blue white-text right" type="submit" id="submit-button" value="Login">Login</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+{% endblock %}
+
+
+<form action="" method="post">
+	<input type="text" placeholder="Username" name="username" value="{{request.form.username }}">
+	<input type="password" placeholder="Password" name="password" value="{{request.form.password }}">
+</form>
+{% if error %}
+<p class="login_error"><strong>Error:</strong> {{ error }}
+{% endif %}
+
+
+
+{% block scripts %}
+	{{ super() }}
+{% endblock %}

@@ -1,0 +1,53 @@
+body {
+	background-color: #E9EDF5;
+}
+
+header, main, footer, nav {
+	padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+	header, main, footer, nav {
+		padding-left: 0;
+	}
+}
+
+.login_row {
+	height: 100vh;
+	background: url('https://neuroflowlive.com/static/img/bg1_50.235e3b76d8f3cefe13ae56b6a1e154c7.png') no-repeat center center fixed;
+	background-size: cover;
+}
+
+#login_box {
+	margin-top: 10% !important;
+	padding-bottom: 70px;
+}
+
+img {
+	width: 80%;
+	margin-top: 40px;
+}
+
+.main_logo {
+	font-size: 20px;
+}
+
+#slide-out a,
+#slide-out i {
+	color: #eeeeee !important;
+}
+
+.brand-logo {
+	margin-left: 15px;
+	font-weight: lighter;
+}
+
+#patient_table {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	margin-top: 50px;
+}
+
+#patient_table tr {
+	cursor: pointer;
+}
