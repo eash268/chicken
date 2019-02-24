@@ -81,6 +81,7 @@ def post(q_num):
 		        "PTSD": {}
 		    }
 		}
+		new_post["scores"]["depression"][q_num].append(response)
 		result = db.patients.insert_one(new_post)
 	elif cursor.count() == 1:
 		print("existing user!")
