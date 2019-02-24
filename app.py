@@ -26,6 +26,54 @@ connection = pymongo.mongo_client.MongoClient(DB_HOST, DB_PORT)
 db = connection[DB_NAME]
 db.authenticate(DB_USER, DB_PASS)
 
+button_to_val = {
+	"q1": {
+		"No": 0,
+		"Yes": 1
+	},
+	"q2": {
+		"": 0,
+		"": 1,
+		"": 2
+	},
+	"q3": {
+		"Not much": 0,
+		"Just right": 1,
+		"More than normal": 2
+	},
+	"q4": {
+		"No": 0,
+		"Yes": 1
+	},
+	"q5": {
+		"Not enough...": 0,
+		"Yes, just right": 1,
+		"Way too much!": 2
+	},
+	"q6": {
+		"": 0,
+		"": 1,
+		"": 2
+	},
+	"q7": {
+		"No": 0,
+		"Yes": 1
+	},
+	"q8a": {
+		"No": 0,
+		"Yes": 1
+	},
+	"q8b": {
+		"No": 0,
+		"Yes": 1
+	},
+	"q9": {
+		"": 0,
+		"": 1,
+		"": 2
+	},
+}
+
 
 #------------------------------------------------------------------------------
 
@@ -112,8 +160,35 @@ def main():
 @app.route("/patient/<string:user_id>")
 def patient(user_id):
 	cursor = db.patients.find({'_id': ObjectId(user_id)})
-	print(cursor[0])
-	return render_template('patient.html', patient=cursor[0])
+	scores = cursor[0]['scores']['depression']
+	num_scores = {
+		"depression": {
+        	"q1": 0,
+        	"q2": 0,
+        	"q3": 0,
+        	"q4": 0,
+        	"q5": 0,
+        	"q6": 0,
+        	"q7": 0,
+        	"q8a": 0,
+        	"q8b": 0,
+        	"q9": 0,
+        },
+        "anxiety": {},
+        "well-being": {},
+        "PTSD": {}
+	}
+
+	for key,val in scores.items():
+		total = 0
+		if val:
+			for v in val:
+				total += button_to_val[key][v]
+		num_scores["depression"][key] += total
+		print(key, num_scores["depression"][key])
+
+	return render_template('patient.html', patient=cursor[0]
+										 , num_scores=num_scores)
 
 
 #------------------------------------------------------------------------------

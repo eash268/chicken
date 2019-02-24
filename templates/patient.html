@@ -1,31 +1,414 @@
 {% extends "base.html" %}
 
 {% block main %}
-	<div class="card col l10 m10 s12 push-l1 push-m1 center z-depth-2" id="patient_table">
-		<table class="highlight">
-			<thead>
-				<tr>
-					<th></th>
-					<th>First</th>
-					<th>Last</th>
-					<th>Provider</th>
-					<th>Scores</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td>{{ patient.firstname }}</td>
-					<td>{{ patient.lastname }}</td>
-					<td>{{ patient.provider }}</td>
-					<td>{{ patient.scores }}</td>
-					<td>
-						<span class="new badge">4</span>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<div class="col l10 m10 s12 push-l1 push-m1">
+		<div class="row">
+			<h4>{{ patient.firstname }} {{ patient.lastname }} ({{ patient.gender }}):</h4>
+		</div>
+	</div>
+	<div class="card col l10 m10 s12 push-l1 push-m1 center z-depth-2">
+		<div class="row">
+			<div class="col s4 center-align">
+				<h5>Interest</h5>
+				<div id="container1" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container1', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Interest'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Interest',
+					        data: [{{ num_scores.depression.q1 }}]
+					    }]
+					});
+				</script>
+			</div>
+			<div class="col s4 center-align">
+				<h5>Mood</h5>
+				<div id="container2" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container2', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Mood'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Mood',
+					        data: [{{ num_scores.depression.q2 }}]
+					    }]
+					});
+				</script>
+			</div>
+			<div class="col s4 center-align">
+				<h5>Sleep</h5>
+				<div id="container3" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container3', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Sleep'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Sleep',
+					        data: [{{ num_scores.depression.q3 }}]
+					    }]
+					});
+				</script>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s4 center-align">
+				<h5>Energy</h5>
+				<div id="container4" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container4', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Energy'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Energy',
+					        data: [{{ num_scores.depression.q4 }}]
+					    }]
+					});
+				</script>
+			</div>
+			<div class="col s4 center-align">
+				<h5>Appetite</h5>
+				<div id="container5" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container5', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Appetite'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Appetite',
+					        data: [{{ num_scores.depression.q5 }}]
+					    }]
+					});
+				</script>
+			</div>
+			<div class="col s4 center-align">
+				<h5>Self-Worth</h5>
+				<div id="container6" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container6', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Self-Worth'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Self-Worth',
+					        data: [{{ num_scores.depression.q6 }}]
+					    }]
+					});
+				</script>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s4 center-align">
+				<h5>Concentration</h5>
+				<div id="container7" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container7', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Concentration'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Concentration',
+					        data: [{{ num_scores.depression.q7 }}]
+					    }]
+					});
+				</script>
+			</div>
+			<div class="col s4 center-align">
+				<h5>Movement</h5>
+				<div id="container8a" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container8a', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Movement'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Movement',
+					        data: [{{ num_scores.depression.q8a }}]
+					    }]
+					});
+				</script>
+			</div>
+			<div class="col s4 center-align">
+				<h5>Restlessness</h5>
+				<div id="container8b" style="height: 100px;"></div>
+				<script type="text/javascript">
+					Highcharts.chart('container8b', {
+					    chart: {
+					        type: 'bar'
+					    },
+					    title: {
+					        text: ' '
+					    },
+					    xAxis: {
+					        categories: ['Restlessness'],
+					        title: {
+					            text: null
+					        }
+					    },
+					    yAxis: {
+					        min: 0,
+					        max: 14,
+					        title: {
+					            text: ' ',
+					            align: 'high'
+					        },
+					        labels: {
+					            overflow: 'justify'
+					        }
+					    },
+					    tooltip: {
+					        valueSuffix: ''
+					    },
+					    legend: {
+					        enabled: false,
+					    },
+					    credits: {
+					        enabled: false
+					    },
+					    series: [{
+					        name: 'Restlessness',
+					        data: [{{ num_scores.depression.q8b }}]
+					    }]
+					});
+				</script>
+			</div>
+		</div>
 	</div>
 {% endblock %}
 
