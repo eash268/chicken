@@ -37,11 +37,11 @@ db.authenticate(DB_USER, DB_PASS)
 
 # routes
 # Route for handling the login page logic
-@app.route("/post", methods=['POST'])
+@app.route("/post", methods=['GET', 'POST'])
 def post():
 	print(request)
 	print(request.args)
-	print(request.params)
+
 	new_post = {
 		"gender": request.args.get('gender')
 	}
