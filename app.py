@@ -37,7 +37,7 @@ db.authenticate(DB_USER, DB_PASS)
 
 # routes
 # Route for handling the login page logic
-@app.route("/post/<str:q_num>", methods=['GET'])
+@app.route("/post/<q_num>", methods=['GET'])
 def post(q_num):
 
 	try:
