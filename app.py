@@ -37,19 +37,18 @@ db.authenticate(DB_USER, DB_PASS)
 
 # routes
 # Route for handling the login page logic
-@app.route("/post", methods=['GET'])
-def post():
+@app.route("/post/<str:q_num>", methods=['GET'])
+def post(q_num):
 
 	try:
 		print(request.args)
-		logger = db.requests.insert_one(str(request.args.to_dict(flat=False)))
+		logger = db.requests.insert_one(request.args.to_dict(flat=False))
 	except:
 		pass
 
 	query = {
 		"firstname": request.args.get('first name'),
 		"lastname": request.args.get('last name'),
-		"propic": request.args.get('profile pic url'),
 		"gender": request.args.get('gender'),
 		"provider": "Dr. Samarth Sharma",
 	}
@@ -66,7 +65,17 @@ def post():
 			"gender": request.args.get('gender'),
 			"provider": "Dr. Samarth Sharma",
 		    "scores": {
-		        "depression": {},
+		        "depression": {
+		        	"q1": [],
+		        	"q2": [],
+		        	"q3": [],
+		        	"q4": [],
+		        	"q5": [],
+		        	"q6": [],
+		        	"q7": [],
+		        	"q8": [],
+		        	"q9": [],
+		        },
 		        "anxiety": {},
 		        "well-being": {},
 		        "PTSD": {}
@@ -75,8 +84,9 @@ def post():
 		result = db.patients.insert_one(new_post)
 	elif cursor.count() == 1:
 		print("existing user!")
-		#user = cursor[0]
-		#result = db.patients.update(query, user)
+		user = cursor[0]
+		user["scores"]["depression"][q_num].append(response)
+		result = db.patients.update(query, user)
 	return ""
 
 @app.route('/login', methods=['GET', 'POST'])
