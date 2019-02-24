@@ -37,8 +37,8 @@ db.authenticate(DB_USER, DB_PASS)
 
 # routes
 # Route for handling the login page logic
-@app.route("/post/<str:question_id>", methods=['GET'])
-def post(question_id):
+@app.route("/post", methods=['GET'])
+def post():
 	print(request.args)
 
 	query = {
@@ -49,8 +49,11 @@ def post(question_id):
 		"provider": "Dr. Samarth Sharma",
 	}
 
+	response = request.args.get('last clicked button name')
+
 	cursor = db.patients.find(query)
 	if len(cursor) == 0:
+		print("new user!")
 		new_post = {
 			"firstname": request.args.get('first name'),
 			"lastname": request.args.get('last name'),
@@ -66,6 +69,7 @@ def post(question_id):
 		}
 		result = db.patients.insert_one(new_post)
 	elif len(cursor) == 1:
+		print("existing user!")
 		user = cursor[0]
 		if user["scores"]["depression"][question_id]:
 			user["scores"]["depression"][question_id].append(1)
