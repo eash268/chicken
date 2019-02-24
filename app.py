@@ -37,17 +37,41 @@ db.authenticate(DB_USER, DB_PASS)
 
 # routes
 # Route for handling the login page logic
-@app.route("/post", methods=['GET'])
-def post():
+@app.route("/post/<str:question_id>", methods=['GET'])
+def post(question_id):
 	print(request.args)
 
-	new_post = {
+	query = {
 		"firstname": request.args.get('first name'),
 		"lastname": request.args.get('last name'),
 		"propic": request.args.get('profile pic url'),
-		"gender": request.args.get('gender')
+		"gender": request.args.get('gender'),
+		"provider": "Dr. Samarth Sharma",
 	}
-	result = db.patients.insert_one(new_post)
+
+	cursor = db.patients.find(query)
+	if len(cursor) == 0:
+		new_post = {
+			"firstname": request.args.get('first name'),
+			"lastname": request.args.get('last name'),
+			"propic": request.args.get('profile pic url'),
+			"gender": request.args.get('gender'),
+			"provider": "Dr. Samarth Sharma",
+		    "scores": {
+		        "depression": {},
+		        "anxiety": {},
+		        "well-being": [],
+		        "PTSD": []
+		    }
+		}
+		result = db.patients.insert_one(new_post)
+	elif len(cursor) == 1:
+		user = cursor[0]
+		if user["scores"]["depression"][question_id]:
+			user["scores"]["depression"][question_id].append(1)
+		else:
+			user["scores"]["depression"][question_id] = [1]
+		result = db.patients.update(query, user)
 	return ""
 
 @app.route('/login', methods=['GET', 'POST'])
