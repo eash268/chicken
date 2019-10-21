@@ -197,7 +197,7 @@ webencodings==0.5.1
 webm==0.10.0
 websocket-client==0.44.0
 websockets==3.3
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 widgetsnbextension==3.1.4
 WTForms==2.1
 WTForms-Alchemy==0.16.5
