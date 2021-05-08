@@ -39,7 +39,7 @@ docutils==0.14
 entrypoints==0.2.3
 enum-compat==0.0.2
 enum34==1.1.6
-eventlet==0.21.0
+eventlet==0.31.0
 fake-factory==0.5.3
 ffprobe==0.5
 flake8==3.5.0
